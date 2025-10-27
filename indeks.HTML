@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <head>: Bagian yang berisi metadata, judul, dan stylesheet. Tidak ditampilkan di halaman web, tapi penting untuk konfigurasi. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi Statistika Kota Surakarta</title>
+    <!-- <title>: Judul halaman yang muncul di tab browser. Ini harus deskriptif untuk SEO dan navigasi. -->
+    <style>
+        /* <style>: Bagian untuk menulis CSS internal. Semua aturan di sini mengontrol tampilan elemen HTML. */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+            background: linear-gradient(to bottom, #e8f5e8, #c8e6c9); 
+            color: #333; 
+        }
+        /* body: Mengatur gaya untuk seluruh tubuh halaman. font-family: Arial untuk font standar; margin: 0 menghilangkan margin default; text-align: center untuk rata tengah; background: gradien hijau; color: teks gelap untuk kontras. */
+        
+        /* === MENU BAR DI PALING ATAS === */
+        .navbar {
+            background-color: #4caf50;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex; 
+            align-items: center; 
+            padding: 0 20px; 
+            justify-content: space-between;
+        }
+        /* .navbar: Kelas untuk navbar. background-color: hijau terang; position: fixed membuatnya tetap di atas saat scroll; display: flex untuk layout horizontal; justify-content: space-between memisahkan logo dan menu. */
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+        /* .navbar .logo: Sub-kelas untuk logo di navbar. display: flex membuat gambar dan teks sejajar; align-items: center untuk rata tengah vertikal. */
+        
+        .navbar .logo img {
+            width: 40px; /* Ukuran logo kecil */
+            height: 40px;
+            margin-right: 10px; /* Jarak antara gambar dan teks */
+        }
+        /* .navbar .logo img: Mengatur gambar logo. width dan height: ukuran tetap 40px; margin-right: jarak dari teks. */
+        
+        .navbar .logo a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        /* .navbar .logo a: Link logo. color: putih; text-decoration: none menghilangkan garis bawah; font-size dan font-weight: ukuran dan ketebalan teks. */
+        
+        .navbar ul {
+            list-style: none; /* Menghilangkan bullet */
+            display: flex; /* Membuat li sejajar */
+            margin: 0;
+            padding: 0;
+        }
+        /* .navbar ul: Daftar menu. list-style: none menghilangkan titik; display: flex untuk horizontal; margin dan padding: nol untuk rapi. */
+        
+        .navbar li {
+            margin: 0 10px; /* Jarak antar item menu */
+        }
+        /* .navbar li: Item menu. margin: jarak horizontal antar item. */
+        
+        .navbar a {
+            color: #fff; /* Teks putih di navbar hijau */
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        /* .navbar a: Link menu. color: putih; padding: ruang dalam; text-decoration: none; font-size: ukuran teks. */
+        
+        .navbar a:hover {
+            background-color: #388e3c; /* Hijau lebih gelap saat hover */
+        }
+        /* .navbar a:hover: Efek saat mouse hover. background-color: hijau gelap untuk feedback visual. */
+        
+        /* === ISI HALAMAN === */
+        .content {
+            padding: 90px 20px 40px; /* Jarak atas agar tidak tertutup menu */
+        }
+        /* .content: Kontainer utama isi. padding: atas 90px (untuk menghindari navbar fixed), samping 20px, bawah 40px. */
+        
+        img {
+            margin-top: 10px;
+            border: 5px solid #4caf50; /* Border hijau di sekitar gambar */
+            border-radius: 10px; /* Sudut melengkung untuk tampilan modern */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan untuk efek frame lebih rapi */
+        }
+        /* img: Gaya untuk semua gambar. margin-top: jarak atas; border: hijau tebal; border-radius: sudut bulat; box-shadow: bayangan untuk efek 3D. */
+        
+        /* Khusus untuk peta, tambahkan frame tambahan dan ukuran yang lebih rapi */
+        .peta-img {
+            width: 100%; /* Responsif, maksimal 500px */
+            max-width: 500px; /* Ukuran maksimal agar rapi */
+            height: auto; /* Jaga rasio aspek */
+            border: 5px solid #4caf50; /* Border hijau */
+            border-radius: 10px; /* Sudut melengkung */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Bayangan lebih kuat untuk efek frame */
+        }
+        /* .peta-img: Kelas khusus untuk gambar peta. width: 100% responsif; max-width: batas 500px; height: auto menjaga proporsi; border dan box-shadow: frame yang lebih kuat. */
+        
+        h1 {
+            margin-bottom: 30px;
+            text-decoration: underline;
+            color: #4caf50; /* Warna hijau terang untuk heading utama */
+            font-weight: bold;
+        }
+        /* h1: Heading utama. margin-bottom: jarak bawah; text-decoration: garis bawah; color: hijau; font-weight: bold. */
+        
+        h2 {
+            margin-top: 40px;
+            color: #4caf50; /* Warna hijau terang untuk subheading */
+        }
+        /* h2: Subheading. margin-top: jarak atas; color: hijau. */
+        
+        ol {
+            display: inline-block;
+            text-align: left;
+            background-color: #e8f5e8; /* Latar hijau terang untuk list */
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #4caf50; /* Frame untuk rapi */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan untuk efek 3D */
+        }
+        /* ol: Daftar terurut. display: inline-block untuk lebar otomatis; text-align: left; background: hijau terang; padding: ruang dalam; border-radius dan border: frame; box-shadow: bayangan. */
+        
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff; /* Latar putih untuk tabel agar kontras */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan untuk efek 3D */
+        }
+        /* table: Tabel. border-collapse: collapse menyatukan border; margin-top: jarak atas; background: putih; box-shadow: bayangan. */
+        
+        table, td {
+            border: 2px solid #4caf50; /* Border hijau untuk tabel */
+            padding: 8px 15px;
+        }
+        /* table, td: Border hijau untuk tabel dan sel; padding: ruang dalam sel. */
+        
+        td {
+            text-align: center;
+        }
+        /* td: Sel tabel. text-align: center untuk rata tengah. */
+        
+        /* Header tabel dengan warna hijau */
+        tr:first-child {
+            background-color: #4caf50;
+            color: #fff;
+            font-weight: bold;
+        }
+        /* tr:first-child: Baris pertama tabel (header). background: hijau; color: putih; font-weight: bold. */
+    </style>
+</head>
+<body>
+    <!-- <body>: Bagian utama yang ditampilkan di browser. Berisi semua konten visual. -->
+    <div class="navbar">
+        <!-- <div class="navbar">: Kontainer navbar dengan kelas untuk styling. -->
+        <div class="logo">
+            <!-- <div class="logo">: Kontainer logo. -->
+            <img src="Seal_of_the_City_of_Surakarta.svg.png" alt="Logo Surakarta">
+            <!-- <img>: Gambar logo. src: sumber gambar; alt: teks alternatif untuk aksesibilitas. -->
+            <a href="#beranda">Surakarta</a>
+            <!-- <a>: Link logo. href="#beranda": anchor ke bagian beranda; teks "Surakarta". -->
+        </div>
+        <ul>
+            <!-- <ul>: Daftar tidak terurut untuk menu. -->
+            <li><a href="#beranda">Beranda</a></li>
+            <!-- <li><a>: Item menu. href="#beranda": anchor ke beranda. -->
+            <li><a href="#data">Daftar Kecamatan</a></li> 
+            <!-- <li><a>: Item menu. href="#data": anchor ke daftar kecamatan. -->
+            <li><a href="#tentang">Jumlah Penduduk</a></li>
+            <!-- <li><a>: Item menu. href="#tentang": anchor ke data penduduk. -->
+            <li><a href="#peta">Peta Administrasi</a></li>
+            <!-- <li><a>: Item menu. href="#peta": anchor ke peta (diubah ke huruf kecil untuk konsistensi). -->
+        </ul>
+    </div>
+    <div class="content" id="beranda">
+        <!-- <div class="content" id="beranda">: Kontainer isi utama dengan ID untuk anchor. -->
+        <center>
+            <!-- <center>: Elemen untuk rata tengah (meski deprecated, digunakan untuk kesederhanaan). -->
+            <img src="Seal_of_the_City_of_Surakarta.svg.png" width="300" height="350" alt="Lambang Kota Surakarta">
+            <!-- <img>: Gambar lambang. width dan height: ukuran tetap; alt: deskripsi. -->
+            <h1>SISTEM INFORMASI STATISTIKA<br>KOTA SURAKARTA</h1>
+            <!-- <h1>: Heading utama. <br>: Break line untuk baris baru. -->
+        </center>
+        <h2 id="data" style="margin-top: 40px;">1. DAFTAR KECAMATAN DI KOTA SURAKARTA</h2>
+        <!-- <h2 id="data">: Subheading dengan ID untuk anchor. style inline: margin atas tambahan. -->
+        <ol>
+            <!-- <ol>: Daftar terurut. -->
+            <li>Banjarsari</li>
+            <!-- <li>: Item daftar. -->
+            <li>Jebres</li>
+            <li>Laweyan</li>
+            <li>Pasar Kliwon</li>
+            <li>Serengan</li>
+        </ol>
+        <h2 id="tentang">2. DATA JUMLAH PENDUDUK</h2>
+        <!-- <h2 id="tentang">: Subheading dengan ID untuk anchor. -->
+        <center>
+            <!-- <center>: Rata tengah untuk tabel. -->
+            <table> 
+                <!-- <table>: Elemen tabel. -->
+                <tr>
+                    <!-- <tr>: Baris tabel. -->
+                    <td>Kecamatan</td>
+                    <!-- <td>: Sel header. -->
+                    <td>Jumlah Penduduk</td>
+                </tr>
+                <tr>
+                    <td>Banjarsari</td>
+                    <td>88.987</td>
+                </tr>
+                <tr>
+                    <td>Serengan</td>
+                    <td>48.567</td>
+                </tr>
+                <tr>
+                    <td>Pasar Kliwon</td>
+                    <td>79.972</td>
+                </tr>
+                <tr>
+                    <td>Jebres</td>
+                    <td>139.321</td>
+                </tr>
+                <tr>
+                    <td>Banjarsari</td>
+                    <td>172.241</td>
+                </tr>
+            </table>
+        </center>
+        <h2 id="peta">3. PETA ADMINISTRASI</h2>
+        <!-- <h2 id="peta">: Subheading dengan ID untuk anchor (diubah ke huruf kecil agar cocok dengan navbar). -->
+        <center>
+            <!-- <center>: Rata tengah untuk peta. -->
+            <img src="Surakarta_Kota.png" class="peta-img" alt="Peta Administrasi Kota Surakarta">
+            <!-- <img>: Gambar peta. class="peta-img": menerapkan gaya khusus; alt: deskripsi. -->
+        </center>
+    </div>
+
+</body>
+</html>
